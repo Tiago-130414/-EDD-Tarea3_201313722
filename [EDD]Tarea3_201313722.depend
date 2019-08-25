@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1566690978 source:c:\users\santi\onedrive\desktop\[edd]tarea3_201313722\arbolbb.cpp
+	"ArbolBB.h"
+	<iostream>
+	<sstream>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+
+1566691996 c:\users\santi\onedrive\desktop\[edd]tarea3_201313722\arbolbb.h
+	<iostream>
+	<string>
+	<string.h>
+	<sstream>
+	<stdlib.h>
+	<conio.h>
+
+1566692052 source:c:\users\santi\onedrive\desktop\[edd]tarea3_201313722\main.cpp
+	<iostream>
+	"ArbolBB.h"
+	<string>
+
