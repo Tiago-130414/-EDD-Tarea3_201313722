@@ -81,3 +81,46 @@ void ArbolBB::recorridoPost(ArbolBB *&raiz)
     }
 
 }
+
+ArbolBB* ArbolBB::eliminarNodo(ArbolBB *&raiz,string elimina)
+{
+    if(estaVacio(raiz)){
+        return raiz;
+    }
+    if(raiz->nombreIMG>elimina)
+    {
+       raiz->izquierda=eliminarNodo(raiz->izquierda,elimina);
+       return raiz;
+    }
+    else if(raiz->nombreIMG<elimina)
+    {
+        raiz->derecha = eliminarNodo(raiz->derecha,elimina);
+        return raiz;
+    }
+
+    if(raiz->izquierda==NULL)
+    {
+        ArbolBB *temp = raiz->derecha;
+        delete raiz;
+        return temp;
+    }
+    else if(raiz->derecha==NULL)
+    {
+        ArbolBB *temp = raiz->izquierda;
+        delete raiz;
+        return temp;
+    }
+    else{
+        ArbolBB *scc = raiz->derecha;
+        ArbolBB *temp = raiz->derecha;
+        while(temp->izquierda!=NULL){
+            scc = temp;
+            temp = temp->izquierda;
+        }
+
+        scc->izquierda = temp->derecha;
+        raiz->nombreIMG = temp->nombreIMG;
+        delete temp;
+        return raiz;
+    }
+}

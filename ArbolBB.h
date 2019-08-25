@@ -22,6 +22,7 @@ class ArbolBB
         void recorridoPre(ArbolBB *&raiz);
         void recorridoInO(ArbolBB *&raiz);
         void recorridoPost(ArbolBB *&raiz);
+        ArbolBB* eliminarNodo(ArbolBB *&raiz,string elimina);
     protected:
 
     private:
