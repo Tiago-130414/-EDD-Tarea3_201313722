@@ -23,6 +23,9 @@ class ArbolBB
         void recorridoInO(ArbolBB *&raiz);
         void recorridoPost(ArbolBB *&raiz);
         ArbolBB* eliminarNodo(ArbolBB *&raiz,string elimina);
+        void graficarArbol(ArbolBB *&raiz);
+        string listadoNodos(ArbolBB *&raiz);
+        string apuntadores(ArbolBB *raiz);
     protected:
 
     private:

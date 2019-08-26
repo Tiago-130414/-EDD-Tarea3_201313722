@@ -2,9 +2,11 @@
 #include <iostream>
 #include <sstream>
 #include <stdlib.h>
-#include <conio.h>
 #include <string.h>
+#include <fstream>
 using namespace std;
+string cad="";
+string cad3="";
 ArbolBB::ArbolBB()
 {
     //ctor
@@ -25,15 +27,15 @@ ArbolBB* ArbolBB::crearNodo(string imagen)
 }
 
 void ArbolBB::insertarNodo(ArbolBB *&raiz,string imagen){
-    if(raiz==NULL){
+    if(estaVacio(raiz)){
         ArbolBB *nuevo = crearNodo(imagen);
         raiz = nuevo;
     }else{
         string r = raiz->nombreIMG;
-        if(imagen<r){
-            insertarNodo(raiz->izquierda,imagen);
-        }else{
+        if(imagen>r){
             insertarNodo(raiz->derecha,imagen);
+        }else{
+            insertarNodo(raiz->izquierda,imagen);
         }
     }
 }
@@ -123,4 +125,75 @@ ArbolBB* ArbolBB::eliminarNodo(ArbolBB *&raiz,string elimina)
         delete temp;
         return raiz;
     }
+}
+
+void ArbolBB::graficarArbol(ArbolBB *&raiz)
+{
+
+    string cad2;
+    string cad4;
+    ofstream archivo;
+    archivo.open("C:\\Users\\santi\\OneDrive\\Desktop\\[EDD]Tarea3_201313722\\arbol.dot",ios::out);
+    if(archivo.fail())
+    {
+        cout<<"Error al crear archivo";
+        exit(1);
+    }
+    archivo<<"digraph arbol\n{"<<endl;
+    archivo<<"\trankdir=TB;"<<endl;
+    archivo<<"\tgraph [splines=compound,nodesep=0.5];"<<endl;
+    archivo<<"\tsubgraph cluster_0{"<<endl;
+    archivo<<"\tstyle=filled;"<<endl;
+    archivo<<"\tcolor=lightgrey;"<<endl;
+    archivo<<"\tlabelloc=t;"<<endl;
+    archivo<<"\tnode [shape = record, style=filled, fillcolor=\"red:orange\",width=0.7,height=0.2];"<<endl;
+    cad2 = listadoNodos(raiz);
+    cad4 = apuntadores(raiz);
+    archivo<<"\n";
+    archivo<<cad2<<endl;
+    archivo<<"\n";
+    archivo<<cad4<<endl;
+    archivo<<"\n";
+    archivo<<"\tlabel=\"Arbol Binario De Busqueda\";"<<endl;
+    archivo<<"\t}"<<endl;
+    archivo<<"}"<<endl;
+    archivo.close();
+    system("dot C:\\Users\\santi\\OneDrive\\Desktop\\[EDD]Tarea3_201313722\\arbol.dot -o C:\\Users\\santi\\OneDrive\\Desktop\\[EDD]Tarea3_201313722\\arbol.png -Tpng -Gcharset=utf8");
+    system("C:\\Users\\santi\\OneDrive\\Desktop\\[EDD]Tarea3_201313722\\arbol.png");
+}
+
+string ArbolBB::listadoNodos(ArbolBB *&raiz)
+{
+    if(estaVacio(raiz))
+    {
+        return cad;
+    }else
+    {
+        listadoNodos(raiz->izquierda);
+        cad+= "\tNodo"+raiz->nombreIMG+"[label=\"<izquierda>|"+raiz->nombreIMG+"|<derecha>\"];\n";
+        listadoNodos(raiz->derecha);
+    }
+    return cad;
+}
+
+string ArbolBB::apuntadores(ArbolBB *raiz)
+{
+      if(estaVacio(raiz))
+    {
+        return cad3;
+    }else
+    {
+
+        apuntadores(raiz->izquierda);
+        if(raiz->izquierda!=nullptr){
+        cad3 += "\tNodo"+raiz->nombreIMG+":izquierda->Nodo"+raiz->izquierda->nombreIMG+";\n";
+        }
+
+        if(raiz->derecha!=nullptr){
+        cad3 += "\tNodo"+raiz->nombreIMG+":derecha->Nodo"+raiz->derecha->nombreIMG+";\n";
+         }
+        apuntadores(raiz->derecha);
+
+    }
+    return cad3;
 }

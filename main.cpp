@@ -13,10 +13,12 @@ int main()
     arbolitoObj.insertarNodo(arbolito,"Geoff");
     arbolitoObj.insertarNodo(arbolito,"Mario2");
     arbolitoObj.insertarNodo(arbolito,"Mushroom");
+    arbolitoObj.insertarNodo(arbolito,"santiago1");
+    arbolitoObj.insertarNodo(arbolito,"santiago2");
+    arbolitoObj.insertarNodo(arbolito,"Andre");
     arbolitoObj.recorridoInO(arbolito);
     cout<<"\n"<<"-------"<<endl;
-    arbolito = arbolitoObj.eliminarNodo(arbolito,"Boo");
-    arbolitoObj.recorridoInO(arbolito);
+     arbolitoObj.graficarArbol(arbolito);
     cout<<"\n"<<"-------"<<endl;
    /* arbolitoObj.recorridoInO(arbolito);
     cout<<"\n"<<"-------"<<endl;
