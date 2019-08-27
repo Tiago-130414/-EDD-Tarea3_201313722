@@ -127,13 +127,13 @@ ArbolBB* ArbolBB::eliminarNodo(ArbolBB *&raiz,string elimina)
     }
 }
 
-void ArbolBB::graficarArbol(ArbolBB *&raiz)
+void ArbolBB::graficarArbol(ArbolBB *&raiz,string nom)
 {
 
     string cad2;
     string cad4;
     ofstream archivo;
-    archivo.open("C:\\Users\\santi\\OneDrive\\Desktop\\[EDD]Tarea3_201313722\\arbol.dot",ios::out);
+    archivo.open("C:\\Users\\santi\\OneDrive\\Desktop\\[EDD]Tarea3_201313722\\"+nom,ios::out);
     if(archivo.fail())
     {
         cout<<"Error al crear archivo";
@@ -141,12 +141,13 @@ void ArbolBB::graficarArbol(ArbolBB *&raiz)
     }
     archivo<<"digraph arbol\n{"<<endl;
     archivo<<"\trankdir=TB;"<<endl;
+    archivo<<"\tordering=out;";
     archivo<<"\tgraph [splines=compound,nodesep=0.5];"<<endl;
-    archivo<<"\tsubgraph cluster_0{"<<endl;
-    archivo<<"\tstyle=filled;"<<endl;
-    archivo<<"\tcolor=lightgrey;"<<endl;
-    archivo<<"\tlabelloc=t;"<<endl;
-    archivo<<"\tnode [shape = record, style=filled, fillcolor=\"red:orange\",width=0.7,height=0.2];"<<endl;
+    //archivo<<"\tsubgraph cluster_0{"<<endl;
+    //archivo<<"\tstyle=filled;"<<endl;
+   // archivo<<"\tcolor=lightgrey;"<<endl;
+    //archivo<<"\tlabelloc=t;"<<endl;
+    archivo<<"\tnode [shape = record, style=\"rounded,filled\", fillcolor=\"orange:red\",width=0.7,height=0.2];"<<endl;
     cad2 = listadoNodos(raiz);
     cad4 = apuntadores(raiz);
     archivo<<"\n";
@@ -154,12 +155,12 @@ void ArbolBB::graficarArbol(ArbolBB *&raiz)
     archivo<<"\n";
     archivo<<cad4<<endl;
     archivo<<"\n";
-    archivo<<"\tlabel=\"Arbol Binario De Busqueda\";"<<endl;
-    archivo<<"\t}"<<endl;
+    //archivo<<"\tlabel=\"Arbol Binario De Busqueda\";"<<endl;
+    //archivo<<"\t}"<<endl;
     archivo<<"}"<<endl;
     archivo.close();
-    system("dot C:\\Users\\santi\\OneDrive\\Desktop\\[EDD]Tarea3_201313722\\arbol.dot -o C:\\Users\\santi\\OneDrive\\Desktop\\[EDD]Tarea3_201313722\\arbol.png -Tpng -Gcharset=utf8");
-    system("C:\\Users\\santi\\OneDrive\\Desktop\\[EDD]Tarea3_201313722\\arbol.png");
+    //system("dot C:\\Users\\santi\\OneDrive\\Desktop\\[EDD]Tarea3_201313722\\arbol.dot -o C:\\Users\\santi\\OneDrive\\Desktop\\[EDD]Tarea3_201313722\\arbol.png -Tpng -Gcharset=utf8");
+    //system("C:\\Users\\santi\\OneDrive\\Desktop\\[EDD]Tarea3_201313722\\arbol.png");
 }
 
 string ArbolBB::listadoNodos(ArbolBB *&raiz)
@@ -196,4 +197,9 @@ string ArbolBB::apuntadores(ArbolBB *raiz)
 
     }
     return cad3;
+}
+
+void ArbolBB::limpiarCadenas(){
+    cad = "";
+    cad3= "";
 }

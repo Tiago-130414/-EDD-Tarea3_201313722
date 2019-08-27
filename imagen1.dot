@@ -1,0 +1,22 @@
+digraph arbol
+{
+	rankdir=TB;
+	ordering=out;	graph [splines=compound,nodesep=0.5];
+	node [shape = record, style="rounded,filled", fillcolor="orange:red",width=0.7,height=0.2];
+
+	Nodofermin[label="<izquierda>|fermin|<derecha>"];
+	Nodohammer[label="<izquierda>|hammer|<derecha>"];
+	Nodoluigi[label="<izquierda>|luigi|<derecha>"];
+	Nodomario[label="<izquierda>|mario|<derecha>"];
+	Nodopeach[label="<izquierda>|peach|<derecha>"];
+	Nodopow[label="<izquierda>|pow|<derecha>"];
+
+
+	Nodohammer:izquierda->Nodofermin;
+	Nodoluigi:izquierda->Nodohammer;
+	Nodoluigi:derecha->Nodomario;
+	Nodomario:derecha->Nodopeach;
+	Nodopeach:derecha->Nodopow;
+
+
+}
